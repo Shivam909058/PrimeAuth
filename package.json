@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.19.2",
+    "i": "^0.3.7",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  }
+}

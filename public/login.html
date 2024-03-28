@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+  <div class="main-container">
+    <div class="form-container">
+      <div class="form-header">
+        <h1>PrimeAuth</h1>
+        <p>Login to your account</p>
+        <form class="form">
+          <div class="input-group">
+            <label for="email">email</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email">
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <i class="fas fa-eye"></i>
+          </div>
+        </form>
+        <button class="submit-btn">Login</button>
+        <p>Don't have an account? <a href="index.html">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.submit-btn').addEventListener('click', function() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message); // Display the response message
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to log in'); // Display an error message
+      });
+    });
+
+    document.querySelector('.fa-eye').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+    });
+  </script>
+  <script src="page.js"></script>
+</body>
+</html>
